@@ -5,8 +5,6 @@ sudo apt upgrade
 #--------------------------------------------------------------------------------------------------------------------
 #Install the unattended-upgrades package (Auto Patch Pi)
 sudo apt install unattended-upgrades
-#Open the configuration file:
-sudo nano /etc/apt/apt.conf.d/50unattended-upgrades
 #Open this file
 sudo nano /etc/apt/apt.conf.d/02periodic
 #Paste these lines (the file should be empty if not, change the values)
