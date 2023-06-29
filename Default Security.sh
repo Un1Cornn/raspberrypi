@@ -2,6 +2,7 @@
 sudo apt update
 sudo apt upgrade
 
+#--------------------------------------------------------------------------------------------------------------------
 #Install the unattended-upgrades package (Auto Patch Pi)
 sudo apt install unattended-upgrades
 #Open the configuration file:
@@ -20,7 +21,7 @@ APT::Periodic::Verbose “2”;
 #This should be ok, you can debug your configuration with this command:
 sudo unattended-upgrades -d
 
-
+#--------------------------------------------------------------------------------------------------------------------
 #Disable the pi user
 #Create a new user:
 sudo adduser <username>
@@ -33,13 +34,7 @@ sudo cp /home/pi/Documents/* /home/<username>/Documents/ ...
 #Delete the pi user:
 sudo deluser -remove-home pi
 
-
-
-
-
-
-
-
+#--------------------------------------------------------------------------------------------------------------------
 #Install Firewall module (Uncomplicated FireWall)
 sudo apt install ufw
 
@@ -58,8 +53,7 @@ sudo ufw enable
 #Check current rules
 sudo ufw status verbose
 
-
-
+#--------------------------------------------------------------------------------------------------------------------
 #SSH: Prevent root login
 #Open the SSH server configuration file:
 sudo nano /etc/ssh/sshd_config
@@ -70,7 +64,7 @@ PermitRootLogin prohibit-password
 #Restart the SSH server if you changed anything in the configuration file:
 sudo service ssh restart
 
-
+#--------------------------------------------------------------------------------------------------------------------
 #Make sudo require a password
 #Edit this file
 sudo nano /etc/sudoers.d/010_pi-nopasswd
@@ -80,6 +74,7 @@ Username pi ALL=(ALL) NOPASSWD: ALL
 Username ALL=(ALL) PASSWD: ALL
 #Save and exit (CTRL+O, CTRL+X)
 
+#--------------------------------------------------------------------------------------------------------------------
 #Install Fail2ban
 sudo apt install fail2ban
 #By default, fail2ban will ban the attacker 10 min after 5 failures.
