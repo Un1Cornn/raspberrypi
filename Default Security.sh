@@ -83,3 +83,31 @@ sudo apt install fail2ban
 sudo nano /etc/fail2ban/jail.conf
 #Restart the service if you change anything:
 sudo service fail2ban restart
+
+#--------------------------------------------------------------------------------------------------------------------
+#Install MFA for SSH (Port 22)
+sudo apt install libpam-google-authenticator
+google-authenticator
+#Do you want authentication tokens to be time-based (y/n)
+y
+#Scan the QR code
+#Save the recovery codes
+#Do you want me to update your "/home/pi/.google_authenticator" file? (y/n)
+y
+#Do you want to disallow multiple uses of the same authentication token? This restricts you to one login about every 30s, ...
+y
+#By default, a new token is generated every 30 seconds by the mobile app. In order to compensate ....
+n
+#If the computer that you are logging into isn't hardened against brute-force...
+y
+sudo nano /etc/pam.d/sshd
+#Add the following line to the bottom of the file
+auth required pam_google_authenticator.so
+#Save and exit (CTRL+O, CTRL+X)
+sudo nano /etc/ssh/sshd_config
+#Find
+ChallengeResponseAuthentication no
+#Replace with
+ChallengeResponseAuthentication yes
+#Save and exit (CTRL+O, CTRL+X)
+sudo systemctl restart sshd
